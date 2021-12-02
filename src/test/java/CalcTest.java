@@ -28,4 +28,28 @@ public class CalcTest {
         Assert.assertTrue((calc.div(4, 4 )) == 1);
     }
 
+    @Test
+    public void checkThrowingExceptionForDivWithZero() throws Exception {
+        Functions calc = new Functions();
+        boolean b = false;
+        try {
+            calc.div(0,0);
+        } catch (Functions.DivWithZero divWithZero) {
+            b = true;
+        }
+        Assert.assertTrue(b);
+    }
+
+    @Test
+    public void checkThrowingExceptionIncorrectOperator() throws Exception {
+        Functions calc = new Functions();
+        boolean b = false;
+        try {
+            calc.setOperation("0");
+        } catch (Functions.IncorrectOperator incorrectOperator) {
+            b = true;
+        }
+        Assert.assertTrue(b);
+    }
+
 }
