@@ -23,7 +23,7 @@ public class CalcTest {
     }
 
     @Test
-    public void checkDivFunctionTest() {
+    public void checkDivFunctionTest() throws Exception {
         Functions calc = new Functions();
         Assert.assertTrue((calc.div(4, 4 )) == 1);
     }

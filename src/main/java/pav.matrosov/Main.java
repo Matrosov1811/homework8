@@ -6,31 +6,16 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         Functions calc = new Functions();
-        Scanner s = new Scanner(System.in);
-        System.out.println("Введите два числа");
-        double a = s.nextDouble();
-        double b = s.nextDouble();
-
-        System.out.println("Введите арифметиское действие (‘+’, ‘-’, ‘*’ или ‘/’)");
-        switch (s.next().charAt(0)) {
-            case '+':
-                System.out.println(calc.sum(a, b));
-                break;
-            case '-':
-                System.out.println(calc.subtraction(a, b));
-                break;
-            case '*':
-                System.out.println(calc.multiplication(a, b));
-                break;
-            case '/':
-                System.out.println(calc.div(a, b));
-                if (b == 0) {
-                    throw new IllegalArgumentException("На ноль делить нельзя");
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Вы ввели некоретный оператор");
+        try (Scanner s = new Scanner(System.in)) {
+            System.out.println("Введите два числа");
+            calc.setA(s.nextDouble());
+            calc.setB(s.nextDouble());
+            System.out.println("Введите арифметиское действие (‘+’, ‘-’, ‘*’ или ‘/’)");
+            calc.setOperation((s.next()));
+        } catch (Functions.IncorrectOperator incorrectOperator) {
+            System.out.println("Вы ввели некоректный оператор");
+        } catch (Functions.DivWithZero divWithZero) {
+            System.out.println("На ноль делить нельзя");
         }
-        s.close();
     }
 }
